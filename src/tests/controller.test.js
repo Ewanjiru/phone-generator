@@ -2,6 +2,7 @@ const request = require('supertest');
 const fs = require('fs');
 const sinon = require('sinon');
 
+process.env.NODE_ENV = 'TEST';
 describe('test phone generator controller', () => {
   beforeEach(() => {
     app = require('../../server');
@@ -29,6 +30,10 @@ describe('test phone generator controller', () => {
     const total = {
       "totalPhoneNumbers": 2
     };
+    const results = {
+      Total: 2,
+      phoneNumbers: ['0419994473', '0348982846']
+    }
     return request(app)
       .post('/api/phoneNumbers')
       .send(total)

@@ -4,7 +4,7 @@
   "description": "a phone generator app",
   "main": "server.js",
   "scripts": {
-    "test": "jest *.test.js --detectOpenHandles --verbose --coverage --maxWorkers=1 --forceExit",
+    "test": "NODE_ENV=test jest *.test.js --detectOpenHandles --verbose --coverage --maxWorkers=1 --forceExit",
     "coverage": "./node_modules/.bin/coveralls < coverage/lcov.info",
     "start": "nodemon server.js"
   },

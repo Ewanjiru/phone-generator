@@ -3,10 +3,18 @@ const util = require('util');
 const readFile = util.promisify(fs.readFile);
 const path = require('path');
 
-const baseDir = path.join(__dirname, "/../files");
-
 const generator = () => Math.floor(Math.random() * 900000000 + 100000000);
 
+let baseDir;
+const checkEnv = () => {
+  if (process.env.NODE_ENV === 'TEST') {
+    console.log('BaseDir', baseDir);
+    baseDir = path.join(__dirname, "/../tests")
+  } else {
+    baseDir = path.join(__dirname, "/../files");
+  }
+  return baseDir
+}
 const phoneGenerator = async (req, res) => {
   try {
     const phoneNumberCount = req.body.totalPhoneNumbers;
@@ -21,7 +29,9 @@ const phoneGenerator = async (req, res) => {
     }
 
     const dataToWrite = phones.join() + ',';
-    fs.open(`${baseDir}/phones.txt`, 'a', (err, fd) => {
+
+    const dir = checkEnv();
+    fs.open(`${dir}/phones.txt`, 'a', (err, fd) => {
       if (err) return res.send({ message: err });
       fs.appendFile(fd, dataToWrite, 'utf8', (err) => {
         if (err) return res.send({ message: err });
@@ -38,7 +48,8 @@ const phoneGenerator = async (req, res) => {
 
 const getAllPhones = async (req, res) => {
   try {
-    const phoneNumbers = await readFile(`${baseDir}/phones.txt`, 'utf8');
+    const dir = checkEnv();
+    const phoneNumbers = await readFile(`${dir}/phones.txt`, 'utf8');
     if (!req.query.sort) {
       let newPhoneArray = phoneNumbers.split(',');
       newPhoneArray.pop();
