@@ -1,10 +1,17 @@
 const request = require('supertest');
 const fs = require('fs');
 const sinon = require('sinon');
-const app = require('../../server');
 
 describe('test phone generator controller', () => {
-  test('should return error if limit is above 10,000', async (done) => {
+  beforeEach(() => {
+    app = require('../../server');
+  });
+
+  afterAll(async () => {
+    await app.close();
+  });
+
+  test('should return error if limit is above 10,000', (done) => {
     const total = {
       "totalPhoneNumbers": 1000000
     };
@@ -18,7 +25,7 @@ describe('test phone generator controller', () => {
       })
   });
 
-  test('should generate phone numbers and write to file', async (done) => {
+  test('should generate phone numbers and write to file', (done) => {
     const total = {
       "totalPhoneNumbers": 2
     };
@@ -31,7 +38,7 @@ describe('test phone generator controller', () => {
       })
   });
 
-  test('should get all phone numbers', async (done) => {
+  test('should get all phone numbers', (done) => {
     return request(app)
       .get('/api/phoneNumbers')
       .then((res, err) => {
@@ -40,7 +47,7 @@ describe('test phone generator controller', () => {
       })
   })
 
-  test('should get all phone numbers and sort them by asc', async (done) => {
+  test('should get all phone numbers and sort them by asc', (done) => {
     return request(app)
       .get('/api/phoneNumbers?sort=asc')
       .then((res, err) => {
@@ -49,7 +56,7 @@ describe('test phone generator controller', () => {
       })
   })
 
-  test('should get all phone numbers and sort them by desc', async (done) => {
+  test('should get all phone numbers and sort them by desc', (done) => {
     return request(app)
       .get('/api/phoneNumbers?sort=desc')
       .then((res, err) => {
@@ -58,3 +65,4 @@ describe('test phone generator controller', () => {
       })
   })
 });
+
