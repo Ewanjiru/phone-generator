@@ -32,7 +32,7 @@ A user can:
 
 **API Documentation**
 ```
-POST limit /api/phone
+POST limit /api/phoneNumbers
 Request
 {
 	"totalPhoneNumbers": 2
@@ -46,7 +46,7 @@ Response
     ]
 }
 
-GET all phoneNumber /api/phone
+GET all phoneNumber /api/phoneNumbers
 Response
 {
     "numbers": [
@@ -66,7 +66,7 @@ Response
     "totalCount": 12
 }
 
-GET all and sort by descending /api/phone?sort=asc
+GET all and sort by descending /api/phoneNumbers?sort=asc
 {
     "totalCount": 12,
     "maxNumber": "0905770439",
@@ -87,7 +87,7 @@ GET all and sort by descending /api/phone?sort=asc
     ]
 }
 
-GET all and sort by descending /api/phone?sort=desc
+GET all and sort by descending /api/phoneNumbers?sort=desc
 {
     "totalCount": 12,
     "maxNumber": "0905770439",
