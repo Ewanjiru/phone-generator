@@ -1,0 +1,1 @@
+[![Coverage Status](https://coveralls.io/repos/github/Ewanjiru/phone-generator/badge.svg?branch=dev)](https://coveralls.io/github/Ewanjiru/phone-generator?branch=dev) [![CircleCI](https://circleci.com/gh/Ewanjiru/phone-generator.svg?style=svg)](https://circleci.com/gh/Ewanjiru/phone-generator)

@@ -4,8 +4,8 @@
   "description": "a phone generator app",
   "main": "server.js",
   "scripts": {
-    "test": "jest *.test.js --watchAll --forceExit --detectOpenHandles --verbose --coverage --maxWorkers=1",
-    "coverage": "jest *.test.js -i --detectOpenHandles --coverage && cat coverage/lcov.info | coveralls",
+    "test": "jest *.test.js --detectOpenHandles --verbose --coverage --maxWorkers=1 --forceExit",
+    "coverage": "./node_modules/.bin/coveralls < coverage/lcov.info",
     "start": "nodemon server.js"
   },
   "author": "nice",
@@ -17,6 +17,7 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
+    "coveralls": "^3.0.6",
     "jest": "^24.9.0",
     "mock-fs": "^4.10.1",
     "sinon": "^7.4.1",
